@@ -3,8 +3,8 @@ import numpy as np # Mengimpor pustaka NumPy untuk digunakan dalam pemrosesan ma
 # Membuat fungsi LU_decomposition yang menerima matriks A dan ukuran n sebagai argumen
 def LU_decomposition(A, n):
 # Menginisialisasi matriks L dan U dengan nol, yang akan menyimpan hasil dekomposisi LU
-    L = np.zeros((n, n))
-    U = np.zeros((n, n))
+    L = np.empty((n, n))
+    U = np.empty((n, n))
 
     for i in range(n): # Memulai iterasi untuk setiap baris i dari matriks
         L[i, i] = 1  # Inisialisasi elemen diagonal matriks L dengan 1
