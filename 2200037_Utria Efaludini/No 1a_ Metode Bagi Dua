@@ -1,0 +1,40 @@
+#Utria Efaludini
+#2200037
+# Buatlah sebuah fungsi penyelesaian yang tepat baik dengan menggunakan metode Bagi Dua ketika
+# a. f(x) = x^3 - 2x + 1
+
+# Mendefinisikan fungsi matematika f(x) = x^3 - 2x + 1
+def fungsi_satu(x):
+    return x**3 - 2*x + 1
+
+# Implementasi metode Bagi Dua untuk mencari akar fungsi
+def metode_bagi_dua_fungsi_satu(a, b, toleransi):
+    # Memeriksa apakah tanda fungsi pada kedua ujung interval sama
+    if fungsi_satu(a) * fungsi_satu(b) >= 0:
+        print("Metode Bagi Dua tidak berlaku pada interval ini.")  # Cetak pesan jika tanda sama
+        return None
+
+    # Iterasi menggunakan metode Bagi Dua hingga toleransi terpenuhi
+    while (b - a) / 2 > toleransi:
+        c = (a + b) / 2  # Titik tengah interval
+
+        if fungsi_satu(c) == 0:  # Jika nilai fungsi pada titik tengah adalah nol, kembalikan nilai tersebut sebagai akar
+            return c
+        elif fungsi_satu(a) * fungsi_satu(c) < 0:  # Memeriksa tanda fungsi pada interval [a, c]
+            b = c
+        else:
+            a = c
+
+    # Kembalikan nilai tengah dari interval saat toleransi terpenuhi
+    return (a + b) / 2
+
+# Definisi interval dan toleransi untuk fungsi pertama
+batas_bawah1 = 3    
+batas_atas1 = -2    
+toleransi1 = 0.1    
+
+# Panggil metode Bagi Dua untuk mencari akar fungsi pertama pada interval tertentu
+akar1 = metode_bagi_dua_fungsi_satu(batas_bawah1, batas_atas1, toleransi1) 
+
+# Menampilkan akar yang ditemukan
+print("Akar dari f(x) = x^3 - 2x + 1 adalah:", akar1)
