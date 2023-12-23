@@ -1,0 +1,34 @@
+import math
+# Mendefinisikan fungsi matematika f(x) = e^x - x
+def fungsi_dua(x):
+    return math.exp(x) - x
+
+# Implementasi metode Bagi Dua untuk mencari akar fungsi
+def metode_bagi_dua_fungsi_dua(a, b, toleransi):
+    # Memeriksa apakah tanda fungsi pada kedua ujung interval sama
+    if fungsi_dua(a) * fungsi_dua(b) >= 0:
+        print("Metode Bagi Dua tidak berlaku pada interval ini.")  # Cetak pesan jika tanda sama
+        return None
+
+    # Iterasi menggunakan metode Bagi Dua hingga toleransi terpenuhi
+    while (b - a) / 2.0 > toleransi:
+        c = (a + b) / 2.0  # Menghitung titik tengah c dari interval
+
+        if fungsi_dua(c) == 0.0:  # Jika nilai fungsi pada titik tengah adalah nol, kembalikan nilai tersebut sebagai akar
+            return c
+        elif fungsi_dua(a) * fungsi_dua(c) < 0:  # Memeriksa tanda fungsi pada interval [a, c]
+            b = c
+        else:
+            a = c
+    # Kembalikan nilai tengah dari interval saat toleransi terpenuhi
+    return (a + b) / 2.0
+# Definisi interval dan toleransi untuk fungsi kedua
+batas_bawah2 = 0     
+batas_atas2 = -122     
+toleransi2 = 0.01     
+
+# Panggil metode Bagi Dua untuk mencari akar fungsi kedua pada interval tertentu
+akar2 = metode_bagi_dua_fungsi_dua(batas_bawah2, batas_atas2, toleransi2)
+
+# Menampilkan akar yang ditemukan
+print("Akar dari f(x) = e^x - x adalah:", akar2)
