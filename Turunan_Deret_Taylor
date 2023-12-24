@@ -1,0 +1,49 @@
+import sympy as sp
+
+def f(x):
+    # Definisikan fungsi yang ingin dihitung turunannya di sini
+    return x**2 + 2*x + 1
+
+def forward_difference(f, x, h):
+    return (f(x + h) - f(x)) / h
+
+def backward_difference(f, x, h):
+    return (f(x) - f(x - h)) / h
+
+def central_difference(f, x, h):
+    return (f(x + h) - f(x - h)) / (2 * h)
+
+def main():
+    # Simbol variabel
+    x = sp.symbols('x')
+
+    # Fungsi yang ingin dihitung turunannya
+    expression = x**2 + 2*x + 1
+
+    # Turunan pertama fungsi
+    derivative = sp.diff(expression, x)
+
+    # Nilai x di mana kita ingin menghitung turunan
+    x_value = 2.0
+
+    # Nilai h (langkah) untuk metode selisih maju, selisih mundur, dan selisih nilai tengah
+    h_value = 0.01
+
+    # Menghitung turunan menggunakan metode selisih maju
+    forward_result = forward_difference(f, x_value, h_value)
+
+    # Menghitung turunan menggunakan metode selisih mundur
+    backward_result = backward_difference(f, x_value, h_value)
+
+    # Menghitung turunan menggunakan metode selisih nilai tengah
+    central_result = central_difference(f, x_value, h_value)
+
+    print(f'Fungsi: {expression}')
+    print(f'Turunan Pertama: {derivative}')
+    print(f'Nilai x: {x_value}')
+    print(f'Metode Selisih Maju: {forward_result}')
+    print(f'Metode Selisih Mundur: {backward_result}')
+    print(f'Metode Selisih Nilai Tengah: {central_result}')
+
+if __name__ == "__main__":
+    main()
