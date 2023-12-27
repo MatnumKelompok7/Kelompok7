@@ -1,0 +1,29 @@
+# Fungsi untuk menghitung integral dengan metode titik tengah
+def hitung_integral_titik_tengah(fungsi, batas_bawah, batas_atas, n):
+    # Menghitung lebar subinterval
+    h = (batas_atas - batas_bawah) / n
+    
+    # Inisialisasi nilai integral
+    integral = 0
+
+    # Melakukan iterasi untuk menambahkan kontribusi setiap titik tengah pada subinterval
+    for i in range(n):
+        x_mid = batas_bawah + (i + 0.5) * h
+        integral += fungsi(x_mid)
+
+    # Mengalikan dengan lebar subinterval h
+    integral *= h
+    return integral
+
+def fungsi_input(x):
+    # Meminta pengguna untuk memasukkan fungsi dalam bentuk Python
+    return eval(input(f'Masukkan fungsi dalam bentuk Python (contoh: x**2 + 2*x + 1): '))
+
+# Meminta input batas bawah, batas atas, dan jumlah subinterval dari pengguna
+batas_bawah = float(input('Masukkan batas bawah integral: '))
+batas_atas = float(input('Masukkan batas atas integral: '))
+n = int(input('Masukkan jumlah subinterval: '))
+
+# Menghitung integral menggunakan metode titik tengah
+hasil_integral = hitung_integral_titik_tengah(fungsi_input, batas_bawah, batas_atas, n)
+print(f'Hasil integral metode titik tengah: {hasil_integral}')
