@@ -1,0 +1,37 @@
+# Fungsi untuk melakukan interpolasi linier
+def linear_interpolation(x_values, y_values, x_interpolate):
+    n = len(x_values)
+    
+    # Memastikan jumlah nilai y sama dengan jumlah nilai x
+    if len(y_values) != n:
+        raise ValueError("Jumlah nilai y harus sama dengan jumlah nilai x")
+    
+    # Iterasi melalui titik data yang diketahui
+    for i in range(n-1):
+        # Mengecek apakah nilai x_interpolate berada di antara dua titik data
+        if not (x_values[i] < x_interpolate <= x_values[i+1]):
+            continue
+        
+        # Interpolasi linier
+        x0, y0 = x_values[i], y_values[i]
+        x1, y1 = x_values[i+1], y_values[i+1]
+        
+        # Menghitung nilai interpolasi linier
+        interpolated_value = y0 + (y1 - y0) * (x_interpolate - x0) / (x1 - x0)
+        return interpolated_value
+    
+    # Jika nilai x_interpolate di luar jangkauan titik data yang diketahui
+    raise ValueError(f"Tidak dapat melakukan interpolasi untuk nilai x={x_interpolate}")
+
+# Input nilai x dan y
+x_values = [1, 2, 3, 4, 5]
+y_values = [10, 15, 25, 30, 35]
+
+# Input nilai x yang ingin diinterpolasi
+x_interpolate = float(input("Masukkan nilai x yang ingin diinterpolasi: "))
+
+# Melakukan interpolasi
+result = linear_interpolation(x_values, y_values, x_interpolate)
+
+# Menampilkan hasil interpolasi
+print(f"Hasil interpolasi untuk x={x_interpolate}: {result}")
